@@ -27,6 +27,46 @@ class sp_editor (
   $start_script_template = $sp_editor::params::start_script_template,
   $deployment_yaml_template = $sp_editor::params::deployment_yaml_template,
   $jre_version = $sp_editor::params::jre_version,
+
+  # -------- deployment.yaml configs --------
+
+  # listenerConfigurations
+  $default_host = $sp_editor::params::default_host,
+
+  $msf4j_host = $sp_editor::params::msf4j_host,
+  $msf4j_keystore_file = $sp_editor::params::msf4j_keystore_file,
+  $msf4j_keystore_password = $sp_editor::params::msf4j_keystore_password,
+  $msf4j_cert_pass = $sp_editor::params::msf4j_cert_pass,
+
+  # Configuration used for the databridge communication
+  $databridge_keystore_location = $sp_editor::params::databridge_keystore_location,
+  $databridge_keystore_password = $sp_editor::params::databridge_keystore_password,
+  $binary_data_receiver_hostname = $sp_editor::params::binary_data_receiver_hostname,
+
+  # Configuration of the Data Agents - to publish events through databridge
+  $thrift_agent_trust_store = $sp_editor::params::thrift_agent_trust_store,
+  $thrift_agent_trust_store_password = $sp_editor::params::thrift_agent_trust_store_password,
+  $binary_agent_trust_store = $sp_editor::params::binary_agent_trust_store,
+  $binary_agent_trust_store_password = $sp_editor::params::binary_agent_trust_store_password,
+
+  # Secure Vault Configuration
+  $securevault_private_key_alias = $sp_editor::params::securevault_private_key_alias,
+  $securevault_keystore = $sp_editor::params::securevault_keystore,
+  $securevault_secret_properties_file = $sp_editor::params::securevault_secret_properties_file,
+  $securevault_master_key_reader_file = $sp_editor::params::securevault_master_key_reader_file,
+
+  # Datasource Configurations
+  $carbon_db_url = $sp_editor::params::carbon_db_url,
+  $carbon_db_username = $sp_editor::params::carbon_db_username,
+  $carbon_db_password = $sp_editor::params::carbon_db_password,
+  $carbon_db_driver = $sp_editor::params::carbon_db_driver,
+
+  # Cluster Configuration
+  $cluster_enabled = $sp_editor::params::cluster_enabled,
+
+  #Authentication Configurations
+  $rest_api_auth_enable = $sp_editor::params::rest_api_auth_enable,
+
 )
 inherits sp_editor::params {
 

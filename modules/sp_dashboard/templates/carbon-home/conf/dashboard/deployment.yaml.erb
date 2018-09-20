@@ -38,10 +38,10 @@ databridge.config:
   eventBufferSize: 2000
     # Keystore file path
     # THIS IS A MANDATORY FIELD
-  keyStoreLocation : ${sys:carbon.home}/resources/security/wso2carbon.jks
+  keyStoreLocation : <%= @databridge_keystore_location %>
     # Keystore password
     # THIS IS A MANDATORY FIELD
-  keyStorePassword : wso2carbon
+  keyStorePassword : <%= @databridge_keystore_password %>
     # Session Timeout value in mins
     # THIS IS A MANDATORY FIELD
   clientTimeoutMin: 30
@@ -71,7 +71,7 @@ databridge.config:
         sslPort: '9711'
         tcpReceiverThreadPoolSize: '100'
         sslReceiverThreadPoolSize: '100'
-        hostName: 0.0.0.0
+        hostName: <%= @binary_data_receiver_hostname %>
 
   # Configuration of the Data Agents - to publish events through databridge
 data.agent.config:
@@ -90,9 +90,9 @@ data.agent.config:
         # Data publisher strategy
       publishingStrategy: async
         # Trust store path
-      trustStorePath: '${sys:carbon.home}/resources/security/client-truststore.jks'
+      trustStorePath: '<%= @thrift_agent_trust_store %>'
         # Trust store password
-      trustStorePassword: 'wso2carbon'
+      trustStorePassword: '<%= @thrift_agent_trust_store_password %>'
         # Queue Size
       queueSize: 32768
         # Batch Size
@@ -139,9 +139,9 @@ data.agent.config:
         # Data publisher strategy
       publishingStrategy: async
         # Trust store path
-      trustStorePath: '${sys:carbon.home}/resources/security/client-truststore.jks'
+      trustStorePath: '<%= @binary_agent_trust_store %>'
         # Trust store password
-      trustStorePassword: 'wso2carbon'
+      trustStorePassword: '<%= @binary_agent_trust_store_password %>'
         # Queue Size
       queueSize: 32768
         # Batch Size
@@ -196,13 +196,13 @@ wso2.securevault:
   secretRepository:
     type: org.wso2.carbon.secvault.repository.DefaultSecretRepository
     parameters:
-      privateKeyAlias: wso2carbon
-      keystoreLocation: ${sys:carbon.home}/resources/security/securevault.jks
-      secretPropertiesFile: ${sys:carbon.home}/conf/${sys:wso2.runtime}/secrets.properties
+      privateKeyAlias: <%= @securevault_private_key_alias %>
+      keystoreLocation: <%= @securevault_key_store %>
+      secretPropertiesFile: <%= @securevault_secret_properties_file %>
   masterKeyReader:
     type: org.wso2.carbon.secvault.reader.DefaultMasterKeyReader
     parameters:
-      masterKeyReaderFile: ${sys:carbon.home}/conf/${sys:wso2.runtime}/master-keys.yaml
+      masterKeyReaderFile: <%= @securevault_master_key_reader_file %>
 
 
 # Data Sources Configuration
@@ -217,10 +217,10 @@ wso2.datasources:
     definition:
       type: RDBMS
       configuration:
-        jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/DASHBOARD_DB;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000;MVCC=TRUE'
-        username: wso2carbon
-        password: wso2carbon
-        driverClassName: org.h2.Driver
+        jdbcUrl: '<%= @dashboard_db_url %>'
+        username: <%= @dashboard_db_username %>
+        password: <%= @dashboard_db_password %>
+        driverClassName: <%= @dashboard_db_driver %>
         maxPoolSize: 50
         idleTimeout: 60000
         connectionTestQuery: SELECT 1
@@ -234,10 +234,10 @@ wso2.datasources:
     definition:
       type: RDBMS
       configuration:
-        jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/BUSINESS_RULES_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000;MVCC=TRUE'
-        username: wso2carbon
-        password: wso2carbon
-        driverClassName: org.h2.Driver
+        jdbcUrl: '<%= @business_rules_db_url %>'
+        username: <%= @business_rules_db_username %>
+        password: <%= @business_rules_db_password %>
+        driverClassName: <%= @business_rules_db_driver %>
         maxPoolSize: 50
         idleTimeout: 60000
         connectionTestQuery: SELECT 1
@@ -270,10 +270,10 @@ wso2.datasources:
     definition:
       type: RDBMS
       configuration:
-        jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/wso2_status_dashboard;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000;MVCC=TRUE'
-        username: wso2carbon
-        password: wso2carbon
-        driverClassName: org.h2.Driver
+        jdbcUrl: '<%= @status_dashboard_db_url %>'
+        username: <%= @status_dashboard_db_username %>
+        password: <%= @status_dashboard_db_password %>
+        driverClassName: <%= @status_dashboard_db_driver %>
         maxPoolSize: 50
         idleTimeout: 60000
         connectionTestQuery: SELECT 1
@@ -288,10 +288,10 @@ wso2.datasources:
     definition:
       type: RDBMS
       configuration:
-        jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/dashboard/database/metrics;AUTO_SERVER=TRUE'
-        username: wso2carbon
-        password: wso2carbon
-        driverClassName: org.h2.Driver
+        jdbcUrl: '<%= @metrics_db_url %>'
+        username: <%= @metrics_db_username %>
+        password: <%= @metrics_db_password %>
+        driverClassName: <%= @metrics_db_driver %>
         maxPoolSize: 50
         idleTimeout: 60000
         connectionTestQuery: SELECT 1
@@ -383,16 +383,16 @@ wso2.business.rules.manager:
        - message-tracing-source-template
        - message-tracing-app-template
   # credentials for worker nodes
-  username: admin
-  password: admin
+  username: <%= @businnes_rules_manager_username %>
+  password: <%= @businnes_rules_manager_password %>
 
 wso2.status.dashboard:
   pollingInterval: 5
   metricsDatasourceName: 'WSO2_METRICS_DB'
   dashboardDatasourceName: 'WSO2_STATUS_DASHBOARD_DB'
   workerAccessCredentials:
-    username: 'admin'
-    password: 'admin'
+    username: '<%= @worker_access_username %>'
+    password: '<%= @worker_access_password %>'
   queries:
     -
      mappings:
@@ -433,9 +433,9 @@ wso2.transport.http:
 
   listenerConfigurations:
     - id: "default-https"
-      host: "0.0.0.0"
+      host: "<%= @listener_host %>"
       port: 9643
       scheme: https
-      keyStoreFile: "${carbon.home}/resources/security/wso2carbon.jks"
-      keyStorePassword: wso2carbon
-      certPass: wso2carbon
+      keyStoreFile: "<%= @listener_keystore_file %>"
+      keyStorePassword: <%= @listener_keystore_password %>
+      certPass: <%= @listener_cert_pass %>

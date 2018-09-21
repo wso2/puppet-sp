@@ -17,16 +17,52 @@
 # Class: sp_manager
 # Init class of stream processor all in one profile
 class sp_manager (
-  $user                 = $sp_manager::params::user,
-  $user_id              = $sp_manager::params::user_id,
-  $user_group           = $sp_manager::params::user_group,
-  $user_group_id        = $sp_manager::params::user_group_id,
-  $product_name         = $sp_manager::params::product_name,
-  $service_name         = $sp_manager::params::service_name,
+  $user = $sp_manager::params::user,
+  $user_id = $sp_manager::params::user_id,
+  $user_group = $sp_manager::params::user_group,
+  $user_group_id = $sp_manager::params::user_group_id,
+  $product_name = $sp_manager::params::product_name,
+  $service_name = $sp_manager::params::service_name,
   $service_profile = $sp_manager::params::service_profile,
   $start_script_template = $sp_manager::params::start_script_template,
   $deployment_yaml_template = $sp_manager::params::deployment_yaml_template,
   $jre_version = $sp_manager::params::jre_version,
+
+  # -------- deployment.yaml configs --------
+
+  # listenerConfigurations
+  $default_host = $sp_manager::params::default_host,
+
+  $msf4j_host = $sp_manager::params::msf4j_host,
+  $msf4j_keystore_file = $sp_manager::params::msf4j_keystore_file,
+  $msf4j_keystore_password = $sp_manager::params::msf4j_keystore_password,
+  $msf4j_cert_pass = $sp_manager::params::msf4j_cert_pass,
+
+  # Configuration used for the databridge communication
+  $databridge_keystore_location = $sp_manager::params::databridge_keystore_location,
+  $databridge_keystore_password = $sp_manager::params::databridge_keystore_password,
+  $binary_data_receiver_hostname = $sp_manager::params::binary_data_receiver_hostname,
+
+  # Configuration of the Data Agents - to publish events through databridge
+  $thrift_agent_trust_store = $sp_manager::params::thrift_agent_trust_store,
+  $thrift_agent_trust_store_password = $sp_manager::params::thrift_agent_trust_store_password,
+  $binary_agent_trust_store = $sp_manager::params::binary_agent_trust_store,
+  $binary_agent_trust_store_password = $sp_manager::params::binary_agent_trust_store_password,
+
+  # Secure Vault Configuration
+  $securevault_private_key_alias = $sp_manager::params::securevault_private_key_alias,
+  $securevault_keystore = $sp_manager::params::securevault_keystore,
+  $securevault_secret_properties_file = $sp_manager::params::securevault_secret_properties_file,
+  $securevault_master_key_reader_file = $sp_manager::params::securevault_master_key_reader_file,
+
+  # Datasource Configurations
+  $mgt_db_rul = $sp_manager::params::mgt_db_rul,
+  $mgt_db_username = $sp_manager::params::mgt_db_username,
+  $mgt_db_password = $sp_manager::params::mgt_db_password,
+  $mgt_db_dirver = $sp_manager::params::mgt_db_dirver,
+
+  # Cluster Configuration
+  $cluster_enabled = $sp_manager::params::cluster_enabled,
 )
 inherits sp_manager::params {
 

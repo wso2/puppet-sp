@@ -40,16 +40,16 @@ wso2.transport.http:
   listenerConfigurations:
     -
       id: "default"
-      host: "0.0.0.0"
+      host: "<%= @default_host %>"
       port: 9190
     -
       id: "msf4j-https"
-      host: "0.0.0.0"
+      host: "<%= @msf4j_host %>"
       port: 9543
       scheme: https
-      keyStoreFile: "${carbon.home}/resources/security/wso2carbon.jks"
-      keyStorePassword: wso2carbon
-      certPass: wso2carbon
+      keyStoreFile: "<%= @msf4j_keystore_file %>"
+      keyStorePassword: <%= @msf4j_keystore_password %>
+      certPass: <%= @msf4j_cert_pass %>
 
   senderConfigurations:
     -
@@ -68,10 +68,10 @@ databridge.config:
   eventBufferSize: 2000
     # Keystore file path
     # THIS IS A MANDATORY FIELD
-  keyStoreLocation : ${sys:carbon.home}/resources/security/wso2carbon.jks
+  keyStoreLocation : <%= @databridge_keystore_location %>
     # Keystore password
     # THIS IS A MANDATORY FIELD
-  keyStorePassword : wso2carbon
+  keyStorePassword : <%= @databridge_keystore_password %>
     # Session Timeout value in mins
     # THIS IS A MANDATORY FIELD
   clientTimeoutMin: 30
@@ -101,7 +101,7 @@ databridge.config:
         sslPort: '9711'
         tcpReceiverThreadPoolSize: '100'
         sslReceiverThreadPoolSize: '100'
-        hostName: 0.0.0.0
+        hostName: <%= @binary_data_receiver_hostname %>
 
   # Configuration of the Data Agents - to publish events through databridge
 data.agent.config:
@@ -120,9 +120,9 @@ data.agent.config:
         # Data publisher strategy
       publishingStrategy: async
         # Trust store path
-      trustStorePath: '${sys:carbon.home}/resources/security/client-truststore.jks'
+      trustStorePath: '<%= @thrift_agent_trust_store %>'
         # Trust store password
-      trustStorePassword: 'wso2carbon'
+      trustStorePassword: '<%= @thrift_agent_trust_store_password %>'
         # Queue Size
       queueSize: 32768
         # Batch Size
@@ -169,9 +169,9 @@ data.agent.config:
         # Data publisher strategy
       publishingStrategy: async
         # Trust store path
-      trustStorePath: '${sys:carbon.home}/resources/security/client-truststore.jks'
+      trustStorePath: '<%= @binary_agent_trust_store %>'
         # Trust store password
-      trustStorePassword: 'wso2carbon'
+      trustStorePassword: '<%= @binary_agent_trust_store_password %>'
         # Queue Size
       queueSize: 32768
         # Batch Size
@@ -226,13 +226,13 @@ wso2.securevault:
   secretRepository:
     type: org.wso2.carbon.secvault.repository.DefaultSecretRepository
     parameters:
-      privateKeyAlias: wso2carbon
-      keystoreLocation: ${sys:carbon.home}/resources/security/securevault.jks
-      secretPropertiesFile: ${sys:carbon.home}/conf/${sys:wso2.runtime}/secrets.properties
+      privateKeyAlias: <%= @securevault_private_key_alias %>
+      keystoreLocation: <%= @securevault_keystore %>
+      secretPropertiesFile: <%= @securevault_secret_properties_file %>
   masterKeyReader:
     type: org.wso2.carbon.secvault.reader.DefaultMasterKeyReader
     parameters:
-      masterKeyReaderFile: ${sys:carbon.home}/conf/${sys:wso2.runtime}/master-keys.yaml
+      masterKeyReaderFile: <%= @securevault_master_key_reader_file %>
 wso2.datasources:
   dataSources:
   - name: SP_MGT_DB
@@ -240,10 +240,10 @@ wso2.datasources:
     definition:
       type: RDBMS
       configuration:
-        jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/SP_MGT_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
-        username: wso2carbon
-        password: wso2carbon
-        driverClassName: org.h2.Driver
+        jdbcUrl: '<%= @mgt_db_rul %>'
+        username: <%= @mgt_db_username %>
+        password: <%= @mgt_db_password %>
+        driverClassName: <%= @mgt_db_dirver %>
         maxPoolSize: 50
         idleTimeout: 60000
         connectionTestQuery: SELECT 1
@@ -270,7 +270,7 @@ wso2.datasources:
 
   # Cluster Configuration
 cluster.config:
-  enabled: false
+  enabled: <%= @cluster_enabled %>
   groupId:  sp
   coordinationStrategyClass: org.wso2.carbon.cluster.coordinator.rdbms.RDBMSCoordinationStrategy
   strategyConfig:

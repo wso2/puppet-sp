@@ -69,7 +69,7 @@ class sp_dashboard (
   $metrics_db_driver = $sp_dashboard::params::metrics_db_driver,
 
   # wso2.business.rules.manager
-  $businnes_rules_manager_username = $sp_dashboard::params::businnes_rules_manager_username,
+  $business_rules_manager_username = $sp_dashboard::params::business_rules_manager_username,
   $businnes_rules_manager_password = $sp_dashboard::params::businnes_rules_manager_password,
 
   # wso2.status.dashboard
@@ -126,7 +126,7 @@ inherits sp_dashboard::params {
     source => "puppet:///modules/${module_name}/${sp_package}",
   }
 
-  # Install WSO2 API Manager
+  # Install WSO2 Stream Processor
   package { $product_name:
     ensure   => installed,
     provider => $installer_provider,

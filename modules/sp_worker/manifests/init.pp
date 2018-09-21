@@ -57,7 +57,7 @@ class sp_worker (
   $securevault_master_key_reader_file = $sp_worker::params::securevault_master_key_reader_file,
 
   # Datasource Configurations
-  $carbon_db_rul = $sp_worker::params::carbon_db_rul,
+  $carbon_db_url = $sp_worker::params::carbon_db_url,
   $carbon_db_username = $sp_worker::params::carbon_db_username,
   $carbon_db_password = $sp_worker::params::carbon_db_password,
   $carbon_db_dirver = $sp_worker::params::carbon_db_dirver,

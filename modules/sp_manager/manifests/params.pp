@@ -59,7 +59,7 @@ class sp_manager::params {
   $securevault_master_key_reader_file = '${sys:carbon.home}/conf/${sys:wso2.runtime}/master-keys.yaml'
 
   # Datasource Configurations
-  $mgt_db_rul = 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/SP_MGT_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
+  $mgt_db_url = 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/SP_MGT_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
   $mgt_db_username = 'wso2carbon'
   $mgt_db_password = 'wso2carbon'
   $mgt_db_dirver = 'org.h2.Driver'

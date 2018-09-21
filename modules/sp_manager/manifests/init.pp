@@ -56,7 +56,7 @@ class sp_manager (
   $securevault_master_key_reader_file = $sp_manager::params::securevault_master_key_reader_file,
 
   # Datasource Configurations
-  $mgt_db_rul = $sp_manager::params::mgt_db_rul,
+  $mgt_db_url = $sp_manager::params::mgt_db_url,
   $mgt_db_username = $sp_manager::params::mgt_db_username,
   $mgt_db_password = $sp_manager::params::mgt_db_password,
   $mgt_db_dirver = $sp_manager::params::mgt_db_dirver,

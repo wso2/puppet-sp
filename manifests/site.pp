@@ -22,11 +22,11 @@ stage { 'final': }
 Stage['main'] -> Stage['custom'] -> Stage['final']
 
 node default {
-  class { "::${::profile}": }
-  class { "::${::profile}::custom":
+  class { "::${::runtime}": }
+  class { "::${::runtime}::custom":
     stage => 'custom'
   }
-  class { "::${::profile}::startserver":
+  class { "::${::runtime}::startserver":
     stage => 'final'
   }
 }

@@ -72,7 +72,7 @@ class sp_dashboard::params {
   $metrics_db_driver = 'org.h2.Driver'
 
   # wso2.business.rules.manager
-  $businnes_rules_manager_username = 'admin'
+  $business_rules_manager_username = 'admin'
   $businnes_rules_manager_password = 'admin'
 
   # wso2.status.dashboard

@@ -107,7 +107,7 @@ inherits sp_manager::params {
     source => "puppet:///modules/${module_name}/${sp_package}",
   }
 
-  # Install WSO2 API Manager
+  # Install WSO2 Stream Processor
   package { $product_name:
     ensure   => installed,
     provider => $installer_provider,

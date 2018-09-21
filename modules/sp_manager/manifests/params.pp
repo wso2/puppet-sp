@@ -66,21 +66,4 @@ class sp_manager::params {
 
   # Cluster Configuration
   $cluster_enabled = 'false'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

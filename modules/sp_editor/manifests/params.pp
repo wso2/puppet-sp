@@ -69,9 +69,4 @@ class sp_editor::params {
 
   #Authentication Configurations
   $rest_api_auth_enable = 'false'
-
-
-
-
-
 }

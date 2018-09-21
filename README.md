@@ -5,7 +5,7 @@ This repository contains puppet modules for each runtime relates to Stream Proce
 ## Quick Start Guide
 1. Download and copy the `wso2sp-linux-installer-x64-4.2.0.deb` or/and `wso2sp-linux-installer-x64-4.2.0.rpm` to the files directories in `/etc/puppet/code/environments/dev/modules/__runtime__/files` in the Puppetmaster. <br>
 `__runtime__` refers to each runtime in Stream Processor. <br>
-eg: `/etc/puppet/code/environments/dev/modules/apim/files` <br>
+eg: `/etc/puppet/code/environments/dev/modules/sp/files` <br>
 Dev refers to the sample environment that you can try these modules.
 
 2. Run necessary runtime on puppet agent. More details on this are available in the following section.
@@ -68,16 +68,6 @@ puppet-sp
     │   └── templates
     │       └── ...
     ├── sp_manager
-    │   ├── files
-    │   │   └── ...
-    │   ├── manifests
-    │   │   ├── init.pp
-    │   │   ├── custom.pp
-    │   │   ├── params.pp
-    │   │   └── startserver.pp
-    │   └── templates
-    │       └── ...
-    ├── apim_publisher
     │   ├── files
     │   │   └── ...
     │   ├── manifests

@@ -15,67 +15,18 @@
 # ----------------------------------------------------------------------------
 
 # Class: sp_worker
-# Init class of stream processor all in one profile
-class sp_worker (
-  $user                 = $sp_worker::params::user,
-  $user_id              = $sp_worker::params::user_id,
-  $user_group           = $sp_worker::params::user_group,
-  $user_group_id        = $sp_worker::params::user_group_id,
-  $product_name         = $sp_worker::params::product_name,
-  $service_name         = $sp_worker::params::service_name,
-  $service_profile = $sp_worker::params::service_profile,
-  $start_script_template = $sp_worker::params::start_script_template,
-  $deployment_yaml_template = $sp_worker::params::deployment_yaml_template,
-  $jre_version = $sp_worker::params::jre_version,
-  $clustering = $sp_worker::params::clustering,
-
-  # -------- deployment.yaml configs --------
-
-  # listenerConfigurations
-  $default_host = $sp_worker::params::default_host,
-
-  $msf4j_host = $sp_worker::params::msf4j_host,
-  $msf4j_keystore_file = $sp_worker::params::msf4j_keystore_file,
-  $msf4j_keystore_password = $sp_worker::params::msf4j_keystore_password,
-  $msf4j_cert_pass = $sp_worker::params::msf4j_cert_pass,
-
-  # Configuration used for the databridge communication
-  $databridge_keystore_location = $sp_worker::params::databridge_keystore_location,
-  $databridge_keystore_password = $sp_worker::params::databridge_keystore_password,
-  $binary_data_receiver_hostname = $sp_worker::params::binary_data_receiver_hostname,
-
-  # Configuration of the Data Agents - to publish events through databridge
-  $thrift_agent_trust_store = $sp_worker::params::thrift_agent_trust_store,
-  $thrift_agent_trust_store_password = $sp_worker::params::thrift_agent_trust_store_password,
-  $binary_agent_trust_store = $sp_worker::params::binary_agent_trust_store,
-  $binary_agent_trust_store_password = $sp_worker::params::binary_agent_trust_store_password,
-
-  # Secure Vault Configuration
-  $securevault_private_key_alias = $sp_worker::params::securevault_private_key_alias,
-  $securevault_keystore = $sp_worker::params::securevault_keystore,
-  $securevault_secret_properties_file = $sp_worker::params::securevault_secret_properties_file,
-  $securevault_master_key_reader_file = $sp_worker::params::securevault_master_key_reader_file,
-
-  # Datasource Configurations
-  $carbon_db_url = $sp_worker::params::carbon_db_url,
-  $carbon_db_username = $sp_worker::params::carbon_db_username,
-  $carbon_db_password = $sp_worker::params::carbon_db_password,
-  $carbon_db_dirver = $sp_worker::params::carbon_db_dirver,
-
-  # Cluster Configuration
-  $cluster_enabled = $sp_worker::params::cluster_enabled,
-)
-inherits sp_worker::params {
+# Init class of stream processor - Worker profile
+class sp_worker inherits sp_worker::params {
 
   if $::osfamily == 'redhat' {
-    $sp_package = 'wso2sp-linux-installer-x64-4.2.0.rpm'
+    $sp_package = 'wso2sp-linux-installer-x64-4.3.0.rpm'
     $installer_provider = 'rpm'
-    $install_path = '/usr/lib64/wso2/wso2sp/4.2.0'
+    $install_path = '/usr/lib64/wso2/wso2sp/4.3.0'
   }
   elsif $::osfamily == 'debian' {
-    $sp_package = 'wso2sp-linux-installer-x64-4.2.0.deb'
+    $sp_package = 'wso2sp-linux-installer-x64-4.3.0.deb'
     $installer_provider = 'dpkg'
-    $install_path = '/usr/lib/wso2/wso2sp/4.2.0'
+    $install_path = '/usr/lib/wso2/wso2sp/4.3.0'
   }
 
   # Create wso2 group

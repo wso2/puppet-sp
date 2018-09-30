@@ -25,7 +25,7 @@ class sp_worker::params {
   $product_name = 'wso2sp'
   $product_profile = 'worker'
   $service_name = "${product_name}-${product_profile}"
-  $jre_version = 'jre1.8.0_172'
+  $jdk_version = 'jdk1.8.0_192'
 
   # Define the template
   $start_script_template = "bin/${product_profile}.sh"

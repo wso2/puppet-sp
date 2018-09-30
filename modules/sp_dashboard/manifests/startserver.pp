@@ -16,10 +16,7 @@
 
 # Class sp_dashboard::startserver
 #
-class sp_dashboard::startserver (
-  $service_name = $sp_dashboard::params::service_name
-)
-  inherits sp_dashboard::params {
+class sp_dashboard::startserver inherits sp_dashboard::params {
 
   service { $service_name:
     ensure => running,

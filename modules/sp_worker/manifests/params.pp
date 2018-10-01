@@ -25,7 +25,7 @@ class sp_worker::params {
   $product_name = 'wso2sp'
   $product_profile = 'worker'
   $service_name = "${product_name}-${product_profile}"
-  $jre_version = 'jre1.8.0_172'
+  $jdk_version = 'jdk1.8.0_192'
 
   # Define the template
   $start_script_template = "bin/${product_profile}.sh"
@@ -35,11 +35,16 @@ class sp_worker::params {
 
   # listenerConfigurations
   $default_host = '0.0.0.0'
-
   $msf4j_host = '0.0.0.0'
   $msf4j_keystore_file = '${carbon.home}/resources/security/wso2carbon.jks'
   $msf4j_keystore_password = 'wso2carbon'
   $msf4j_cert_pass = 'wso2carbon'
+
+  $siddhi_default_host = '0.0.0.0'
+  $siddhi_msf4j_host = '0.0.0.0'
+  $siddhi_msf4j_keystore = '${carbon.home}/resources/security/wso2carbon.jks'
+  $siddhi_msf4j_keystore_password = 'wso2carbon'
+  $siddhi_msf4j_cert_pass = 'wso2carbon'
 
   # Configuration used for the databridge communication
   $databridge_keystore_location = '${sys:carbon.home}/resources/security/wso2carbon.jks'

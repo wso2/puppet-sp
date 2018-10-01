@@ -72,16 +72,16 @@ siddhi.stores.query.api:
   listenerConfigurations:
     -
       id: "default"
-      host: "0.0.0.0"
+      host: "<%= @siddhi_default_host %>"
       port: 7070
     -
       id: "msf4j-https"
-      host: "0.0.0.0"
+      host: "<%= @siddhi_msf4j_host %>"
       port: 7443
       scheme: https
-      keyStoreFile: "${carbon.home}/resources/security/wso2carbon.jks"
-      keyStorePassword: wso2carbon
-      certPass: wso2carbon
+      keyStoreFile: "<%= @siddhi_msf4j_keystore %>"
+      keyStorePassword: <%= @siddhi_msf4j_keystore_password %>
+      certPass: <%= @siddhi_msf4j_cert_pass %>
 
   # Configuration used for the databridge communication
 databridge.config:

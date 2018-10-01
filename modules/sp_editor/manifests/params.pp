@@ -41,6 +41,8 @@ class sp_editor::params {
   $msf4j_keystore_password = 'wso2carbon'
   $msf4j_cert_pass = 'wso2carbon'
 
+  $siddhi_default_host = '0.0.0.0'
+
   # Configuration used for the databridge communication
   $databridge_keystore_location = '${sys:carbon.home}/resources/security/wso2carbon.jks'
   $databridge_keystore_password = 'wso2carbon'

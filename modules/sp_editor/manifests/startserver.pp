@@ -16,10 +16,7 @@
 
 # Class sp_editor::startserver
 #
-class sp_editor::startserver (
-  $service_name = $sp_editor::params::service_name
-)
-  inherits sp_editor::params {
+class sp_editor::startserver inherits sp_editor::params {
 
   service { $service_name:
     ensure => running,

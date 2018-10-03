@@ -22,9 +22,10 @@ class sp_editor::params {
   $user_group = 'wso2'
   $user_home = '/home/$user'
   $user_group_id = 802
-  $product_name = 'wso2sp'
+  $product = 'wso2sp'
+  $product_version = '4.3.0'
   $product_profile = 'editor'
-  $service_name = "${product_name}-${product_profile}"
+  $service_name = "${product}-${product_profile}"
   $jdk_version = 'jdk1.8.0_192'
 
   # Define the template

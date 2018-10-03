@@ -19,14 +19,16 @@
 class sp_worker inherits sp_worker::params {
 
   if $::osfamily == 'redhat' {
-    $sp_package = 'wso2sp-linux-installer-x64-4.3.0.rpm'
-    $installer_provider = 'rpm'
-    $install_path = '/usr/lib64/wso2/wso2sp/4.3.0'
+    $product_package = "${product}-linux-installer-x64-${product_version}.rpm"
+    $installer_provider = 'yum'
+    $install_path = "/usr/lib64/wso2/${product}/${product_version}"
+    $package_name = "${product}-${product_version}"
   }
   elsif $::osfamily == 'debian' {
-    $sp_package = 'wso2sp-linux-installer-x64-4.3.0.deb'
-    $installer_provider = 'dpkg'
-    $install_path = '/usr/lib/wso2/wso2sp/4.3.0'
+    $product_package = "${product}-linux-installer-x64-${product_version}.deb"
+    $installer_provider = 'apt'
+    $install_path = "/usr/lib/wso2/${product}/${product_version}"
+    $package_name = "/opt/${product}/${product_package}"
   }
 
   # Create wso2 group
@@ -45,25 +47,25 @@ class sp_worker inherits sp_worker::params {
     system => true,
   }
   # Ensure the installation directory is available
-  file { "/opt/${product_name}":
+  file { "/opt/${product}":
     ensure => 'directory',
     owner  => $user,
     group  => $user_group,
   }
 
   # Copy the installer to the directory
-  file { "/opt/${product_name}/${sp_package}":
+  file { "/opt/${product}/${product_package}":
     owner  => $user,
     group  => $user_group,
     mode   => '0644',
-    source => "puppet:///modules/${module_name}/${sp_package}",
+    source => "puppet:///modules/${module_name}/${product_package}",
   }
 
   # Install WSO2 Stream Processor
-  package { $product_name:
+  package { $package_name:
     ensure   => installed,
     provider => $installer_provider,
-    source   => "/opt/${product_name}/${sp_package}"
+    source   => "/opt/${product}/${product_package}"
   }
 
   # Change the ownership of the installation directory to wso2 user & group

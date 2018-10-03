@@ -16,10 +16,7 @@
 
 # Class sp_manager::startserver
 #
-class sp_manager::startserver (
-  $service_name = $sp_manager::params::service_name
-)
-  inherits sp_manager::params {
+class sp_manager::startserver inherits sp_manager::params {
 
   service { $service_name:
     ensure => running,

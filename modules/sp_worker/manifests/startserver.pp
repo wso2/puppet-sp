@@ -16,10 +16,7 @@
 
 # Class sp_worker::startserver
 #
-class sp_worker::startserver (
-  $service_name = $sp_worker::params::service_name
-)
-  inherits sp_worker::params {
+class sp_worker::startserver inherits sp_worker::params {
 
   service { $service_name:
     ensure => running,

@@ -18,8 +18,15 @@
 #
 class sp_worker::startserver inherits sp_worker::params {
 
+  exec { 'daemon-reload':
+    command => "systemctl daemon-reload",
+    path    => "/bin/",
+  }
+
+  # Start the service
   service { $service_name:
-    ensure => running,
-    enable => true
+    enable    => true,
+    ensure    => running,
+    subscribe => File["binary"],
   }
 }

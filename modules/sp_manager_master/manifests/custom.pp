@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------
-#  Copyright (c) 2018 WSO2, Inc. http://www.wso2.org
+#  Copyright (c) 2019 WSO2, Inc. http://www.wso2.org
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -14,19 +14,8 @@
 #  limitations under the License.
 # ----------------------------------------------------------------------------
 
-# Class sp_manager::startserver
-#
-class sp_manager::startserver inherits sp_manager::params {
-
-  exec { 'daemon-reload':
-    command => "systemctl daemon-reload",
-    path    => "/bin/",
-  }
-
-  # Start the service
-  service { $service_name:
-    enable    => true,
-    ensure    => running,
-    subscribe => File["binary"],
-  }
+# Class: sp_manager_master::custom
+# This class is reserved to run custom user code before starting the server.
+class sp_manager_master::custom {
+  # Resources
 }

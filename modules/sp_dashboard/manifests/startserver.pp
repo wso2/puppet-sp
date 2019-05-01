@@ -18,8 +18,15 @@
 #
 class sp_dashboard::startserver inherits sp_dashboard::params {
 
+  exec { 'daemon-reload':
+    command => "systemctl daemon-reload",
+    path    => "/bin/",
+  }
+
+  # Start the service
   service { $service_name:
-    ensure => running,
-    enable => true
+    enable    => true,
+    ensure    => running,
+    subscribe => File["binary"],
   }
 }

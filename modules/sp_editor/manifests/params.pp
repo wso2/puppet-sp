@@ -18,58 +18,30 @@
 # This class includes all the necessary parameters
 class sp_editor::params {
   $user = 'wso2carbon'
-  $user_id = 802
   $user_group = 'wso2'
-  $user_home = '/home/$user'
-  $user_group_id = 802
   $product = 'wso2sp'
   $product_version = '4.3.0'
   $product_profile = 'editor'
   $service_name = "${product}-${product_profile}"
-  $jdk_version = 'jdk1.8.0_192'
+
+  # JDK Distributions
+  if $::osfamily == 'redhat' {
+    $lib_dir = "/usr/lib64/wso2"
+  }
+  elsif $::osfamily == 'debian' {
+    $lib_dir = "/usr/lib/wso2"
+  }
+  $jdk_name = 'amazon-corretto-8.202.08.2-linux-x64'
+  $java_home = "${lib_dir}/${jdk_name}"
 
   # Define the template
   $start_script_template = "bin/${product_profile}.sh"
-  $deployment_yaml_template = "conf/${product_profile}/deployment.yaml"
 
-  # -------- deployment.yaml configs --------
+  # Directories
+  $products_dir = "/usr/local/wso2"
 
-  # listenerConfigurations
-  $default_host = '0.0.0.0'
-
-  $msf4j_host = '0.0.0.0'
-  $msf4j_keystore_file = '${carbon.home}/resources/security/wso2carbon.jks'
-  $msf4j_keystore_password = 'wso2carbon'
-  $msf4j_cert_pass = 'wso2carbon'
-
-  $siddhi_default_host = '0.0.0.0'
-
-  # Configuration used for the databridge communication
-  $databridge_keystore_location = '${sys:carbon.home}/resources/security/wso2carbon.jks'
-  $databridge_keystore_password = 'wso2carbon'
-  $binary_data_receiver_hostname = '0.0.0.0'
-
-  # Configuration of the Data Agents - to publish events through databridge
-  $thrift_agent_trust_store = '${sys:carbon.home}/resources/security/client-truststore.jks'
-  $thrift_agent_trust_store_password = 'wso2carbon'
-  $binary_agent_trust_store = '${sys:carbon.home}/resources/security/client-truststore.jks'
-  $binary_agent_trust_store_password = 'wso2carbon'
-
-  # Secure Vault Configuration
-  $securevault_private_key_alias = 'wso2carbon'
-  $securevault_keystore = '${sys:carbon.home}/resources/security/securevault.jks'
-  $securevault_secret_properties_file = '${sys:carbon.home}/conf/${sys:wso2.runtime}/secrets.properties'
-  $securevault_master_key_reader_file = '${sys:carbon.home}/conf/${sys:wso2.runtime}/master-keys.yaml'
-
-  # Datasource Configurations
-  $carbon_db_url = 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
-  $carbon_db_username = 'wso2carbon'
-  $carbon_db_password = 'wso2carbon'
-  $carbon_db_driver = 'org.h2.Driver'
-
-  # Cluster Configuration
-  $cluster_enabled = 'false'
-
-  #Authentication Configurations
-  $rest_api_auth_enable = 'false'
+  # Product and installation information
+  $product_binary = "${product}-${product_version}.zip"
+  $distribution_path = "${products_dir}/${product}/${product_profile}/${product_version}"
+  $install_path = "${distribution_path}/${product}-${product_version}"
 }

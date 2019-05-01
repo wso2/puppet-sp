@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------
-#  Copyright (c) 2018 WSO2, Inc. http://www.wso2.org
+#  Copyright (c) 2019 WSO2, Inc. http://www.wso2.org
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -14,19 +14,9 @@
 #  limitations under the License.
 # ----------------------------------------------------------------------------
 
-# Class sp_editor::startserver
+# Class sp_editor_master::startserver
 #
-class sp_editor::startserver inherits sp_editor::params {
+class sp_editor_master::startserver inherits sp_editor_master::params {
 
-  exec { 'daemon-reload':
-    command => "systemctl daemon-reload",
-    path    => "/bin/",
-  }
-
-  # Start the service
-  service { $service_name:
-    enable    => true,
-    ensure    => running,
-    subscribe => File["binary"],
-  }
+  # This class should be used to control Stream processor if required.
 }

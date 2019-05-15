@@ -130,7 +130,7 @@ class sp_editor inherits sp_editor::params {
     require     => Package['unzip'],
   }
 
-  # Copy wso2server.sh to installed directory
+  # Copy editor.sh to installed directory
   file { "${install_path}/${start_script_template}":
     ensure  => file,
     owner   => $user,

@@ -197,7 +197,7 @@ wso2.securevault:
     type: org.wso2.carbon.secvault.repository.DefaultSecretRepository
     parameters:
       privateKeyAlias: <%= @securevault_private_key_alias %>
-      keystoreLocation: <%= @securevault_key_store %>
+      keystoreLocation: <%= @securevault_keystore %>
       secretPropertiesFile: <%= @securevault_secret_properties_file %>
   masterKeyReader:
     type: org.wso2.carbon.secvault.reader.DefaultMasterKeyReader

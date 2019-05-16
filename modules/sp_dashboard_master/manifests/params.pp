@@ -16,7 +16,7 @@
 
 # Claas sp_dashboard_master::params
 # This class includes all the necessary parameters
-class sp_dashboard_master::params {
+class sp_dashboard_master::params inherits common::params {
   $user = 'wso2carbon'
   $user_group = 'wso2'
   $product = 'wso2sp'
@@ -27,23 +27,6 @@ class sp_dashboard_master::params {
   $deployment_yaml_template = "conf/${product_profile}/deployment.yaml"
 
   # -------- deployment.yaml configs --------
-
-  # databridge.config
-  $databridge_keystore_location = '${sys:carbon.home}/resources/security/wso2carbon.jks'
-  $databridge_keystore_password = 'wso2carbon'
-  $binary_data_receiver_hostname = '0.0.0.0'
-
-  # data.agent.config
-  $thrift_agent_trust_store = '${sys:carbon.home}/resources/security/client-truststore.jks'
-  $thrift_agent_trust_store_password = 'wso2carbon'
-  $binary_agent_trust_store = '${sys:carbon.home}/resources/security/client-truststore.jks'
-  $binary_agent_trust_store_password = 'wso2carbon'
-
-  # wso2.securevault
-  $securevault_private_key_alias = 'wso2carbon'
-  $securevault_key_store = '${sys:carbon.home}/resources/security/securevault.jks'
-  $securevault_secret_properties_file = '${sys:carbon.home}/conf/${sys:wso2.runtime}/secrets.properties'
-  $securevault_master_key_reader_file = '${sys:carbon.home}/conf/${sys:wso2.runtime}/master-keys.yaml'
 
   # wso2.datasources
   $dashboard_db_url = 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/DASHBOARD_DB;IFEXISTS=TRUE;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000;MVCC=TRUE'

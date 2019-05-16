@@ -30,7 +30,7 @@ class sp_dashboard_master inherits sp_dashboard_master::params {
   file { "binary":
     path   => "${distribution_path}/${product_binary}",
     mode   => '0644',
-    source => "puppet:///modules/distributions/${product_binary}",
+    source => "puppet:///modules/common/${product_binary}",
   }
 
   # Install the "unzip" package

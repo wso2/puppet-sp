@@ -16,7 +16,7 @@
 
 # Claas sp_editor_master::params
 # This class includes all the necessary parameters
-class sp_editor_master::params {
+class sp_editor_master::params inherits common::params {
   $user = 'wso2carbon'
   $user_group = 'wso2'
   $product = 'wso2sp'
@@ -37,23 +37,6 @@ class sp_editor_master::params {
   $msf4j_cert_pass = 'wso2carbon'
 
   $siddhi_default_host = '0.0.0.0'
-
-  # Configuration used for the databridge communication
-  $databridge_keystore_location = '${sys:carbon.home}/resources/security/wso2carbon.jks'
-  $databridge_keystore_password = 'wso2carbon'
-  $binary_data_receiver_hostname = '0.0.0.0'
-
-  # Configuration of the Data Agents - to publish events through databridge
-  $thrift_agent_trust_store = '${sys:carbon.home}/resources/security/client-truststore.jks'
-  $thrift_agent_trust_store_password = 'wso2carbon'
-  $binary_agent_trust_store = '${sys:carbon.home}/resources/security/client-truststore.jks'
-  $binary_agent_trust_store_password = 'wso2carbon'
-
-  # Secure Vault Configuration
-  $securevault_private_key_alias = 'wso2carbon'
-  $securevault_keystore = '${sys:carbon.home}/resources/security/securevault.jks'
-  $securevault_secret_properties_file = '${sys:carbon.home}/conf/${sys:wso2.runtime}/secrets.properties'
-  $securevault_master_key_reader_file = '${sys:carbon.home}/conf/${sys:wso2.runtime}/master-keys.yaml'
 
   # Datasource Configurations
   $carbon_db_url = 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'

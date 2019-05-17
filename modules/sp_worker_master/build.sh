@@ -30,8 +30,7 @@
 : ${puppet_env:="/etc/puppet/code/environments/production"}
 
 # Apply configurations
-export FACTER_runtime=sp_worker_master
-puppet agent -vt
+puppet apply -e "include sp_worker_master" --modulepath=${puppet_env}/modules
 
 # exit immediately if a command exits with a non-zero status
 set -e

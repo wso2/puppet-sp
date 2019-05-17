@@ -3,7 +3,7 @@
 This repository contains the Puppet modules for WSO2 Stream Processor.
 
 ## Quick Start Guide
-1. Download wso2sp-4.3.0.zip to the `<puppet_environment>/modules/common/files` directory in the **Puppetmaster**.
+1. Download an updated wso2sp-4.3.0.zip pack and copy it to the `<puppet_environment>/modules/common/files` directory in the **Puppetmaster**.
 
 2. Set up the JDK distribution as follows:
 

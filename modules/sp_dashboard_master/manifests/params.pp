@@ -20,7 +20,7 @@ class sp_dashboard_master::params inherits common::params {
   $user = 'wso2carbon'
   $user_group = 'wso2'
   $product = 'wso2sp'
-  $product_version = '4.3.0'
+  $product_version = '4.4.0'
   $product_profile = 'dashboard'
 
   # Define the template
@@ -44,7 +44,7 @@ class sp_dashboard_master::params inherits common::params {
   $status_dashboard_db_password = 'wso2carbon'
   $status_dashboard_db_driver = 'org.h2.Driver'
 
-  $metrics_db_url = 'jdbc:h2:${sys:carbon.home}/wso2/dashboard/database/metrics;AUTO_SERVER=TRUE'
+  $metrics_db_url = 'jdbc:h2:${sys:carbon.home}/wso2/dashboard/database/metrics;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
   $metrics_db_username = 'wso2carbon'
   $metrics_db_password = 'wso2carbon'
   $metrics_db_driver = 'org.h2.Driver'

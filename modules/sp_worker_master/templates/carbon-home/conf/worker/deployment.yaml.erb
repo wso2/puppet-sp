@@ -21,7 +21,7 @@ wso2.carbon:
     # server name
   name: WSO2 Stream Processor
     # server type
-#  type: wso2-sp
+  type: wso2-sp
     # ports used by this server
   ports:
       # port offset
@@ -324,7 +324,10 @@ wso2.securevault:
 wso2.datasources:
   dataSources:
     -
+      name: WSO2_CLUSTER_DB
+      description: "The datasource used by cluster coordinators in HA deployment"
       definition:
+        type: RDBMS
         configuration:
           connectionTestQuery: "SELECT 1"
           driverClassName: <%= @carbon_db_dirver %>
@@ -335,9 +338,6 @@ wso2.datasources:
           password: <%= @carbon_db_password %>
           username: <%= @carbon_db_username %>
           validationTimeout: 30000
-        type: RDBMS
-      description: "The datasource used for registry and user manager"
-      name: WSO2_CARBON_DB
 
     # carbon metrics data source
     - name: WSO2_METRICS_DB
@@ -347,7 +347,7 @@ wso2.datasources:
       definition:
         type: RDBMS
         configuration:
-          jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/dashboard/database/metrics;AUTO_SERVER=TRUE'
+          jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/dashboard/database/metrics;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000;'
           username: wso2carbon
           password: wso2carbon
           driverClassName: org.h2.Driver
@@ -434,7 +434,7 @@ wso2.datasources:
       definition:
         type: RDBMS
         configuration:
-          jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/dashboard/database/EI_ANALYTICS;AUTO_SERVER=TRUE'
+          jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/worker/database/EI_ANALYTICS;AUTO_SERVER=TRUE'
           username: wso2carbon
           password: wso2carbon
           driverClassName: org.h2.Driver
@@ -539,14 +539,34 @@ cluster.config:
   groupId:  sp
   coordinationStrategyClass: org.wso2.carbon.cluster.coordinator.rdbms.RDBMSCoordinationStrategy
   strategyConfig:
-    datasource: WSO2_CARBON_DB
-    heartbeatInterval: 1000
-    heartbeatMaxRetry: 2
-    eventPollingInterval: 1000
+    datasource: WSO2_CLUSTER_DB
+    heartbeatInterval: 3000
+    heartbeatMaxRetry: 3
+    eventPollingInterval: 3000
+
+# Authentication configuration
+auth.configs:
+  type: 'local'        # Type of the IdP client used
+  userManager:
+    adminRole: admin   # Admin role which is granted all permissions
+    userStore:         # User store
+      users:
+        -
+          user:
+            username: admin
+            password: YWRtaW4=
+            roles: 1
+      roles:
+        -
+          role:
+            id: 1
+            displayName: admin
 
   # Sample of deployment.config for Two node HA
 #deployment.config:
 #  type: ha
+#  passiveNodeDetailsWaitTimeOutMillis: 300000
+#  passiveNodeDetailsRetrySleepTimeMillis: 500
 #  eventSyncServer:
 #    host: localhost
 #    port: 9893
@@ -564,6 +584,7 @@ cluster.config:
   # Sample of deployment.config for Distributed deployment
 #deployment.config:
 #  type: distributed
+#  isReceiverNode: false
 #  httpsInterface:
 #    host: 192.168.1.3
 #    port: 9443
@@ -584,4 +605,5 @@ cluster.config:
 #analytics.solutions:
 #  IS-analytics.enabled: true
 #  APIM-analytics.enabled: true
+#  APIM-alerts.enabled: true
 #  EI-analytics.enabled: true

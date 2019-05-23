@@ -20,6 +20,8 @@ wso2.carbon:
   id: wso2-sp
     # server name
   name: WSO2 Stream Processor
+    # server type
+  type: wso2-sp
     # ports used by this server
   ports:
       # port offset
@@ -447,6 +449,13 @@ wso2.status.dashboard:
     username: '<%= @worker_access_username %>'
     password: '<%= @worker_access_password %>'
 
+wso2.dashboard.datasearch:
+  workerList:
+    - localhost:9443
+  workerAccessCredentials:
+    username: admin
+    password: admin
+
 wso2.transport.http:
   transportProperties:
     - name: "server.bootstrap.socket.timeout"
@@ -464,3 +473,28 @@ wso2.transport.http:
       keyStoreFile: "<%= @listener_keystore_file %>"
       keyStorePassword: <%= @listener_keystore_password %>
       certPass: <%= @listener_cert_pass %>
+
+# Authentication configuration
+auth.configs:
+  type: 'local'        # Type of the IdP client used
+  userManager:
+    adminRole: admin   # Admin role which is granted all permissions
+    userStore:         # User store
+      users:
+        -
+          user:
+            username: admin
+            password: YWRtaW4=
+            roles: 1
+      roles:
+        -
+          role:
+            id: 1
+            displayName: admin
+
+  # Configuration for enabling analytics solutions when server type in Carbon Configuration is set as 'wso2-sp'.
+#analytics.solutions:
+#  IS-analytics.enabled: true
+#  APIM-analytics.enabled: true
+#  APIM-alerts.enabled: true
+#  EI-analytics.enabled: true

@@ -22,7 +22,7 @@
 # Build artifacts and versions
 : ${product:="wso2sp"}
 : ${profile:="dashboard"}
-: ${product_version:="4.3.0"}
+: ${product_version:="4.4.0"}
 : ${products_dir:="/usr/local/wso2"}
 : ${distribution_path:=${products_dir}"/"${product}"/"${profile}"/"${product_version}}
 : ${install_path:=${distribution_path}"/"${product}"-"${product_version}}

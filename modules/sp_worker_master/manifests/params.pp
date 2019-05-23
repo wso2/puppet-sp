@@ -20,7 +20,7 @@ class sp_worker_master::params inherits common::params {
   $user = 'wso2carbon'
   $user_group = 'wso2'
   $product = 'wso2sp'
-  $product_version = '4.3.0'
+  $product_version = '4.4.0'
   $product_profile = 'worker'
 
   # Define the template
@@ -42,7 +42,7 @@ class sp_worker_master::params inherits common::params {
   $siddhi_msf4j_cert_pass = 'wso2carbon'
 
   # Datasource Configurations
-  $carbon_db_url = 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
+  $carbon_db_url = 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CLUSTER_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000;AUTO_SERVER=TRUE'
   $carbon_db_username = 'wso2carbon'
   $carbon_db_password = 'wso2carbon'
   $carbon_db_dirver = 'org.h2.Driver'

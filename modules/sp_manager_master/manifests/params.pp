@@ -20,7 +20,7 @@ class sp_manager_master::params inherits common::params {
   $user = 'wso2carbon'
   $user_group = 'wso2'
   $product = 'wso2sp'
-  $product_version = '4.3.0'
+  $product_version = '4.4.0'
   $product_profile = 'manager'
 
   # Define the template

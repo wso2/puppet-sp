@@ -23,33 +23,6 @@ class sp_worker_master::params inherits common::params {
   $product_version = '4.4.0'
   $product_profile = 'worker'
 
-  # Define the template
-  $deployment_yaml_template = "conf/${product_profile}/deployment.yaml"
-
-  # -------- deployment.yaml configs --------
-
-  # listenerConfigurations
-  $default_host = '0.0.0.0'
-  $msf4j_host = '0.0.0.0'
-  $msf4j_keystore_file = '${carbon.home}/resources/security/wso2carbon.jks'
-  $msf4j_keystore_password = 'wso2carbon'
-  $msf4j_cert_pass = 'wso2carbon'
-
-  $siddhi_default_host = '0.0.0.0'
-  $siddhi_msf4j_host = '0.0.0.0'
-  $siddhi_msf4j_keystore = '${carbon.home}/resources/security/wso2carbon.jks'
-  $siddhi_msf4j_keystore_password = 'wso2carbon'
-  $siddhi_msf4j_cert_pass = 'wso2carbon'
-
-  # Datasource Configurations
-  $carbon_db_url = 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CLUSTER_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000;AUTO_SERVER=TRUE'
-  $carbon_db_username = 'wso2carbon'
-  $carbon_db_password = 'wso2carbon'
-  $carbon_db_dirver = 'org.h2.Driver'
-
-  # Cluster Configuration
-  $cluster_enabled = 'false'
-
   # Directories
   $products_dir = "/usr/local/wso2"
 

@@ -49,13 +49,6 @@ class sp_manager_master inherits sp_manager_master::params {
     require     => Package['unzip'],
   }
 
-  # Copy deployment.yaml to the installed directory
-  file { "${install_path}/${deployment_yaml_template}":
-    ensure  => file,
-    mode    => '0644',
-    content => template("${module_name}/carbon-home/${deployment_yaml_template}.erb")
-  }
-
   # Install the "zip" package
   package { 'zip':
     ensure => installed,

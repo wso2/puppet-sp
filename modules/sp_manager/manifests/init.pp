@@ -136,6 +136,15 @@ class sp_manager inherits sp_manager::params {
     require     => Package['unzip'],
   }
 
+  # Copy configuration changes to the installed directory
+  $template_list.each | String $template | {
+    file { "${install_path}/${template}":
+      ensure  => file,
+      mode    => '0644',
+      content => template("${module_name}/carbon-home/${template}.erb")
+    }
+  }
+
   # Copy manager.sh to installed directory
   file { "${install_path}/${start_script_template}":
     ensure  => file,

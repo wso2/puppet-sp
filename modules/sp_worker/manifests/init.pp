@@ -136,6 +136,15 @@ class sp_worker inherits sp_worker::params {
     require     => Package['unzip'],
   }
 
+  # Copy configuration changes to the installed directory
+  $template_list.each | String $template | {
+    file { "${install_path}/${template}":
+      ensure  => file,
+      mode    => '0644',
+      content => template("${module_name}/carbon-home/${template}.erb")
+    }
+  }
+
   # Copy worker.sh to installed directory
   file { "${install_path}/${start_script_template}":
     ensure  => file,

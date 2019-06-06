@@ -37,28 +37,27 @@ class sp_manager::params {
   # Define the template
   $start_script_template = "bin/${product_profile}.sh"
 
-  # Directories
-  $products_dir = "/usr/local/wso2"
+  # Define the template
+  $template_list = [
+    'conf/manager/deployment.yaml'
+  ]
 
-  # Product and installation information
-  $product_binary = "${product}-${product_version}.zip"
-  $distribution_path = "${products_dir}/${product}/${product_profile}/${product_version}"
-  $install_path = "${distribution_path}/${product}-${product_version}"
+  # -------- deployment.yaml configs --------
 
-  # List of files that must contain agent specific configuraitons
-  # if $deployment == "dev" {
-  #   $config_file_list = [
-  #     { "file" => "${install_path}/file1", "key" => "key1", "value" => "value1" },
-  #   ]
-  # }
-  # elsif $deployment == "staging" {
-  #   $config_file_list = [
-  #     { "file" => "${install_path}/file1", "key" => "key1", "value" => "value1" },
-  #   ]
-  # }
-  # elsif $deployment == "production" {
-  #   $config_file_list = [
-  #     { "file" => "${install_path}/file1", "key" => "key1", "value" => "value1" },
-  #   ]
-  # }
+  # listenerConfigurations
+  $default_host = '0.0.0.0'
+
+  $msf4j_host = '0.0.0.0'
+  $msf4j_keystore_file = '${carbon.home}/resources/security/wso2carbon.jks'
+  $msf4j_keystore_password = 'wso2carbon'
+  $msf4j_cert_pass = 'wso2carbon'
+
+  # Datasource Configurations
+  $mgt_db_url = 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/SP_MGT_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
+  $mgt_db_username = 'wso2carbon'
+  $mgt_db_password = 'wso2carbon'
+  $mgt_db_dirver = 'org.h2.Driver'
+
+  # Cluster Configuration
+  $cluster_enabled = 'false'
 }

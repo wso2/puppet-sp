@@ -23,33 +23,6 @@ class sp_editor_master::params inherits common::params {
   $product_version = '4.4.0'
   $product_profile = 'editor'
 
-  # Define the template
-  $deployment_yaml_template = "conf/${product_profile}/deployment.yaml"
-
-  # -------- deployment.yaml configs --------
-
-  # listenerConfigurations
-  $default_host = '0.0.0.0'
-
-  $msf4j_host = '0.0.0.0'
-  $msf4j_keystore_file = '${carbon.home}/resources/security/wso2carbon.jks'
-  $msf4j_keystore_password = 'wso2carbon'
-  $msf4j_cert_pass = 'wso2carbon'
-
-  $siddhi_default_host = '0.0.0.0'
-
-  # Datasource Configurations
-  $carbon_db_url = 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
-  $carbon_db_username = 'wso2carbon'
-  $carbon_db_password = 'wso2carbon'
-  $carbon_db_driver = 'org.h2.Driver'
-
-  # Cluster Configuration
-  $cluster_enabled = 'false'
-
-  #Authentication Configurations
-  $rest_api_auth_enable = 'false'
-
   # Directories
   $products_dir = "/usr/local/wso2"
 

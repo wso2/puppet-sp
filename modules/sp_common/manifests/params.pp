@@ -14,7 +14,7 @@
 #  limitations under the License.
 #----------------------------------------------------------------------------
 
-class common::params {
+class sp_common::params {
 
   # -------- deployment.yaml configs --------
 

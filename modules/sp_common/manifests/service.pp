@@ -1,5 +1,5 @@
-# ----------------------------------------------------------------------------
-#  Copyright (c) 2018 WSO2, Inc. http://www.wso2.org
+#----------------------------------------------------------------------------
+#  Copyright (c) 2019 WSO2, Inc. http://www.wso2.org
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -12,21 +12,12 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
-# ----------------------------------------------------------------------------
+#----------------------------------------------------------------------------
 
-# Class sp_dashboard::startserver
-#
-class sp_dashboard::startserver inherits sp_dashboard::params {
+class sp_common::service inherits sp_common::params {
 
-  exec { 'daemon-reload':
-    command => "systemctl daemon-reload",
-    path    => "/bin/",
-  }
-
-  # Start the service
-  service { $service_name:
-    enable    => true,
-    ensure    => running,
-    subscribe => File["binary"],
+  service { "${wso2_service_name}":
+    enable => true,
+    ensure => running,
   }
 }

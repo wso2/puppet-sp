@@ -16,31 +16,21 @@
 
 # Claas sp_worker::params
 # This class includes all the necessary parameters
-class sp_worker::params {
-  $user = 'wso2carbon'
-  $user_group = 'wso2'
-  $product = 'wso2sp'
-  $product_version = '4.4.0'
-  $product_profile = 'worker'
-  $service_name = "${product}-${product_profile}"
-
-  # JDK Distributions
-  if $::osfamily == 'redhat' {
-    $lib_dir = "/usr/lib64/wso2"
-  }
-  elsif $::osfamily == 'debian' {
-    $lib_dir = "/usr/lib/wso2"
-  }
-  $jdk_name = 'amazon-corretto-8.202.08.2-linux-x64'
-  $java_home = "${lib_dir}/${jdk_name}"
+class sp_worker::params inherits sp_common::params {
 
   # Define the template
-  $start_script_template = "bin/${product_profile}.sh"
+  $start_script_template = "bin/worker.sh"
 
   # Define the template
   $template_list = [
     'conf/worker/deployment.yaml'
   ]
+
+  # Define file list
+  $file_list = []
+
+  # Define remove file list
+  $file_removelist = []
 
   # -------- deployment.yaml configs --------
 

@@ -16,17 +16,13 @@
 
 # Run stages
 stage { 'custom': }
-stage { 'final': }
 
 # Order stages
-Stage['main'] -> Stage['custom'] -> Stage['final']
+Stage['main'] -> Stage['custom']
 
 node default {
   class { "::${::runtime}": }
   class { "::${::runtime}::custom":
     stage => 'custom'
-  }
-  class { "::${::runtime}::startserver":
-    stage => 'final'
   }
 }

@@ -16,6 +16,51 @@
 
 class sp_common::params {
 
+  $packages = ["unzip"]
+  $version = "4.4.0"
+  $pack = "wso2sp-${version}"
+
+  $user = 'wso2carbon'
+  $user_group = 'wso2'
+  $user_id = 802
+  $user_group_id = 802
+
+  # JDK Distributions
+  $java_dir = "/opt"
+  $java_symlink = "${java_dir}/java"
+  $jdk_name = 'amazon-corretto-8.202.08.2-linux-x64'
+  $java_home = "${java_dir}/${jdk_name}"
+
+  $profile = $runtime
+  $target = "/mnt"
+  $product_dir = "${target}/${profile}"
+  $pack_dir = "${target}/${profile}/packs"
+  $wso2_service_name = "wso2${profile}"
+
+  # Pack Directories
+  $carbon_home = "${product_dir}/${pack}"
+  $product_binary = "${pack}.zip"
+
+  # ----- Profile configs -----
+  case $profile {
+    'sp_dashboard': {
+      $server_script_path = "${carbon_home}/bin/dashboard.sh"
+      $pid_file_path = "${carbon_home}/wso2/dashboard/runtime.pid"
+    }
+    'sp_editor': {
+      $server_script_path = "${carbon_home}/bin/editor.sh"
+      $pid_file_path = "${carbon_home}/wso2/editor/runtime.pid"
+    }
+    'sp_manager': {
+      $server_script_path = "${carbon_home}/bin/manager.sh"
+      $pid_file_path = "${carbon_home}/wso2/manager/runtime.pid"
+    }
+    'sp_worker': {
+      $server_script_path = "${carbon_home}/bin/worker.sh"
+      $pid_file_path = "${carbon_home}/wso2/worker/runtime.pid"
+    }
+  }
+
   # -------- deployment.yaml configs --------
 
   # databridge.config

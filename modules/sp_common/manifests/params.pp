@@ -20,6 +20,12 @@ class sp_common::params {
   $version = "4.4.0"
   $pack = "wso2sp-${version}"
 
+  # Set the location the product packages should reside in (eg: "local" in the /files directory, "remote" in a remote location)
+  $pack_location = "local"
+  # $pack_location = "remote"
+  # $remote_jdk = "<URL_TO_JDK_FILE>"
+  # $remote_pack = "<URL_TO_SP_PACK>"
+
   $user = 'wso2carbon'
   $user_group = 'wso2'
   $user_id = 802

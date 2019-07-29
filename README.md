@@ -2,6 +2,8 @@
 
 This repository contains the Puppet modules for WSO2 Stream Processor.
 
+These modules are supported for Puppet 5.4.0
+
 ## Quick Start Guide
 1. Download a product package. Product packages can be downloaded and copied to a local directory, or downloaded from a remote location.
   * **Local**: Download a wso2sp-4.4.0.zip pack to your preferred deployment pattern and copy it to the `<puppet_environment>/modules/sp_common/files/packs` directory in the **Puppetmaster**.
